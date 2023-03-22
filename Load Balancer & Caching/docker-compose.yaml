@@ -1,0 +1,42 @@
+version: '3'
+services:
+  nginx:
+    container_name: some-nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+      - app2
+    networks:
+      - demo
+  app:
+    build: ./app
+    working_dir: /app
+    environment:
+      IMAGES_PATH: /app/images
+    volumes:
+      - ./app:/app
+      - demo-data:/app/images
+    command: mvn clean spring-boot:run
+    networks:
+      - demo
+  app2:
+    build: ./app
+    working_dir: /app
+    environment:
+      IMAGES_PATH: /app/images
+    volumes:
+      - ./app:/app
+      - demo-data:/app/images
+    command: mvn clean spring-boot:run
+    networks:
+      - demo
+volumes:
+  demo-data:
+networks:
+  demo:
+    driver: bridge

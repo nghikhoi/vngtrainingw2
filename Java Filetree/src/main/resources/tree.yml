@@ -1,0 +1,12 @@
+folder_a:
+  file_a: "contentofa"
+  file_b: "contentofb"
+  folder_a_a:
+    file_a: "contentofaa"
+    file_b: "contentofab"
+folder_b:
+  file_a: "contentofc"
+  file_b: "contentofd"
+  folder_b_a:
+    file_a: "contentofca"
+    file_b: "contentofcb"
